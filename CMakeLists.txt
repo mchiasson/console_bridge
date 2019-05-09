@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.8.6)
-project(console_bridge)
+cmake_minimum_required(VERSION 3.10)
+project(console_bridge VERSION 0.4.3)
 
 set (CONSOLE_BRIDGE_MAJOR_VERSION 0)
 set (CONSOLE_BRIDGE_MINOR_VERSION 4)
@@ -72,7 +72,7 @@ install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
 if(WIN32 AND NOT CYGWIN)
   set(CMAKE_CONFIG_INSTALL_DIR CMake)
 else()
-  set(CMAKE_CONFIG_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/)
+  set(CMAKE_CONFIG_INSTALL_DIR ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake/)
 endif()
 
 include(CMakePackageConfigHelpers)
@@ -97,7 +97,7 @@ write_basic_config_version_file(
 
 install(EXPORT ${PROJECT_NAME}-targets
   FILE ${PROJECT_NAME}-targets.cmake
-  NAMESPACE ${PROJECT_NAME}::
+  NAMESPACE ros::
   DESTINATION ${CMAKE_CONFIG_INSTALL_DIR})
 install(FILES
         "${CMAKE_BINARY_DIR}/${cmake_conf_file}"
